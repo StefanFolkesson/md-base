@@ -108,12 +108,28 @@ else:
 ```
 ## Upprepning
 Vi skulle vilja fortsätta slå tills någon har vunnit/förlorat. För att hantera detta använder vi så kallade loopar.
+Det finns två sätt att hantera loopar antingen så loopar man ett bestämt antal gånger eller så loopar man tills ett
+villkor uppfylls. I detta fall vet vi inte hur många gångar vi behöver slå tills vi vunnit. Så vi sätter ett villkor så länge mitt liv är över 0 och fiendens liv är över 0.
+```python
+while(spelare_liv > 0 AND fiende_liv > 0):
+    # Slåss!!
+```
+Så då kan vi lägga in slagsmålet i loopen. Jag slår, han slår och så fortsätter vi tills någon har 0 liv.
+```python
+while(spelare_liv > 0 AND fiende_liv > 0):
+    # Du slår
+    print(spelare + " slår med sin " +spelare_vapen +" och gör: "+ str(spelare_vapen_skada) +" skada")
+    fiende_liv = fiende_liv - spelare_vapen_skada
+    print(fiende + " har nu bara " + str(fiende_liv)+ " hälsopoäng kvar")
+    # Fiende slår
+    print(fiende + " slår med sin " +fiende_vapen +" och gör: "+ str(fiende_vapen_skada) +" skada")
+    spelare_liv = spelare_liv - fiende_vapen_skada
+    print(spelare + " har nu bara " + str(spelare_liv)+ " hälsopoäng kvar")
+
+```
+
 
 
 Nu har du grunderna till att göra ett enkelt äventyrsspel. 
 Ditt uppdrag är att skapa ett enkelt spel där man kan bestämma sitt namn och där jag kan slåss mit en motståndare. 
 Om jag överlever efter jag slagit så har jag vunnit. 
-
-```python
-
-```
