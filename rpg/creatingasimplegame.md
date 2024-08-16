@@ -111,12 +111,12 @@ Vi skulle vilja fortsätta slå tills någon har vunnit/förlorat. För att hant
 Det finns två sätt att hantera loopar antingen så loopar man ett bestämt antal gånger eller så loopar man tills ett
 villkor uppfylls. I detta fall vet vi inte hur många gångar vi behöver slå tills vi vunnit. Så vi sätter ett villkor så länge mitt liv är över 0 och fiendens liv är över 0.
 ```python
-while(spelare_liv > 0 AND fiende_liv > 0):
+while(spelare_liv > 0 and fiende_liv > 0):
     # Slåss!!
 ```
 Så då kan vi lägga in slagsmålet i loopen. Jag slår, han slår och så fortsätter vi tills någon har 0 liv.
 ```python
-while(spelare_liv > 0 AND fiende_liv > 0):
+while(spelare_liv > 0 and fiende_liv > 0):
     # Du slår
     print(spelare + " slår med sin " +spelare_vapen +" och gör: "+ str(spelare_vapen_skada) +" skada")
     fiende_liv = fiende_liv - spelare_vapen_skada
@@ -128,8 +128,75 @@ while(spelare_liv > 0 AND fiende_liv > 0):
 
 ```
 
-
-
+Nu skulle vi kunna lägga till valet in i upprepningen. Om jag väljer att fly så får fienden slå på mig en gång men 
+sen är striden slut. Då måste vi antingen lägga till ett extra villkor i loopen eller så gör vi ett avbrott (break).
+Jag väljer att göra ett break för jag tycker det passar bäst in för oss. 
+```python
+while(spelare_liv > 0 and fiende_liv > 0):
+    svar = input("Vad vill du göra härnäst? (slå/fly) ")
+    if(svar=="slå"):
+        # Du slår
+        print(spelare + " slår med sin " +spelare_vapen +" och gör: "+ str(spelare_vapen_skada) +" skada")
+        fiende_liv = fiende_liv - spelare_vapen_skada
+        print(fiende + " har nu bara " + str(fiende_liv)+ " hälsopoäng kvar")
+    # Fiende slår
+    print(fiende + " slår med sin " +fiende_vapen +" och gör: "+ str(fiende_vapen_skada) +" skada")
+    spelare_liv = spelare_liv - fiende_vapen_skada
+    print(spelare + " har nu bara " + str(spelare_liv)+ " hälsopoäng kvar")
+    if(svar=="fly"):
+        print("Du flyr!")
+        break    
+```
+## Sammanställning
 Nu har du grunderna till att göra ett enkelt äventyrsspel. 
+```python
+spelare = "Gandalf"
+spelare_liv = 100
+spelare_vapen="Stav"
+spelare_vapen_skada=10
+
+fiende = "Balrog"
+fiende_liv = 100
+fiende_vapen="Piska"
+fiende_vapen_skada=30
+
+print("Den mäktiga striden i Morias grottor är påväg att starta.")
+print(spelaren + "står på bron och tittar ned på " + fienden + " i avgrunden")
+
+while(spelare_liv > 0 and fiende_liv > 0):
+    svar = input("Vad vill du göra härnäst? (slå/fly) ")
+    if(svar=="slå"):
+        # Du slår
+        print(spelare + " slår med sin " +spelare_vapen +" och gör: "+ str(spelare_vapen_skada) +" skada")
+        fiende_liv = fiende_liv - spelare_vapen_skada
+        print(fiende + " har nu bara " + str(fiende_liv)+ " hälsopoäng kvar")
+    # Fiende slår
+    print(fiende + " slår med sin " +fiende_vapen +" och gör: "+ str(fiende_vapen_skada) +" skada")
+    spelare_liv = spelare_liv - fiende_vapen_skada
+    print(spelare + " har nu bara " + str(spelare_liv)+ " hälsopoäng kvar")
+    if(svar=="fly"):
+        print("Du flyr!")
+        break    
+```
+## Slump
+Just nu är det ganska uppenbart att Balrogen vinner. Det är lite tråkigt. Vi kan lägga till lite slump. Det är helt
+enkelt så att vi kan få datorn att ta fram ett tal mellan två olika värden. 
+Detta innebär att vi behöver göra om lite hur vi hanterar vapnen. Vi får sätta ett minimun värde och ett maximum 
+värde.
+```python
+spelare_vapen_skada_min=10
+spelare_vapen_skada_max=20
+fiende_vapen_skada_min=1
+fiende_vapen_skada_max=30
+# För att få fram skadan använder man sig av ett bibliotek som heter random.
+import random
+# Denna skall vara högst upp i dokumentet.
+
+# Sedan i loopen kan vi lägga till dessa rader direkt efter frågan vad vill du göra härnäst. :
+spelare_vapen_skada = random.randint(spelare_vapen_skada_min,spelare_vapen_skada_max)
+fiende_vapen_skada = random.randint(fiende_vapen_skada_min,fiende_vapen_skada_max)
+```
+
+
 Ditt uppdrag är att skapa ett enkelt spel där man kan bestämma sitt namn och där jag kan slåss mit en motståndare. 
 Om jag överlever efter jag slagit så har jag vunnit. 
