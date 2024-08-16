@@ -106,6 +106,14 @@ if(svar=="slå"):
 else:
     print("Du flyr!")
 ```
+## Upprepning
+Vi skulle vilja fortsätta slå tills någon har vunnit/förlorat. För att hantera detta använder vi så kallade loopar.
+
+
 Nu har du grunderna till att göra ett enkelt äventyrsspel. 
 Ditt uppdrag är att skapa ett enkelt spel där man kan bestämma sitt namn och där jag kan slåss mit en motståndare. 
 Om jag överlever efter jag slagit så har jag vunnit. 
+
+```python
+
+```
